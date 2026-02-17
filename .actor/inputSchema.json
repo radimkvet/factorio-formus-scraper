@@ -8,8 +8,7 @@
             "type": "string",
             "description": "The category to scrape, case insensitive",
             "editor": "textfield",
-            "prefill": "news",
-            "required": true
+            "prefill": "news"
         },
         "limit": {
             "title": "Limit",
@@ -17,7 +16,8 @@
             "description": "The maximum number of topics to scrape, there are 25 topics per page",
             "editor": "number",
             "prefill": 100,
-            "required": true
+            "minimum": 1
         }
-    }
+    },
+    "required": ["category"]
 }

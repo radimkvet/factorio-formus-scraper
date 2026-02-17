@@ -1,13 +1,18 @@
 {
-	"actorSpecification": 1,
-	"name": "factorio-scraper",
-	"title": "Empty TypeScript project",
-	"description": "Empty project in TypeScript.",
-	"version": "0.0",
-	"buildTag": "latest",
-	"meta": {
-		"templateId": "ts-empty",
-		"generatedBy": "<FILL-IN-MODEL>"
-	},
-	"dockerfile": "../Dockerfile"
+    "actorSpecification": 1,
+    "name": "factorio-scraper",
+    "title": "Factorio forums scraper",
+    "description": "Scraper for factorio forums that extracts topics and their details.",
+    "version": "0.1",
+    "buildTag": "latest",
+    "meta": {
+        "templateId": "ts-empty",
+        "generatedBy": "GitHub Copilot with Claude-Sonnet-4.5"
+    },
+    "dockerfile": "../Dockerfile",
+    "inputSchema": "./inputSchema.json",
+    "outputSchema": "./outputSchema.json",
+    "storages": {
+        "dataset": "./datasetSchema.json"
+    }
 }
