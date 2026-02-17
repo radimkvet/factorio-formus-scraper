@@ -51,6 +51,7 @@ export const forumSearchStartHandler = async (
 
         const userData: UserData[typeof Label.FORUM_CATEGORY] = {
             category,
+            limit: request.userData.limit,
         };
 
         log.info(`[${Label.FORUM_SEARCH_START}] enqueued category with name ${title} and url ${url}`);

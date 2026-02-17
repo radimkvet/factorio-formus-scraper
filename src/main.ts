@@ -21,6 +21,7 @@ const initialRequest = new Request<UserData[typeof Label.FORUM_SEARCH_START]>({
     label: Label.FORUM_SEARCH_START,
     userData: {
         category,
+        limit,
     },
 });
 await crawler.run([initialRequest]);

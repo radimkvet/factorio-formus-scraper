@@ -1,5 +1,6 @@
 import { type CheerioCrawlingContext, Request } from 'crawlee';
 
+import { CrawlingStatistics } from '../state/crawlingStatistics.js';
 import type { Topic, UserData } from '../types/index.js';
 import { Label } from '../types/index.js';
 import { checkPagination, parseNumber } from '../utils/index.js';
@@ -23,9 +24,18 @@ const selectors = {
  * Handler for one forum category, which goes through all the topics and adds them to the queue untill it hits the defined limit.
  */
 export const forumCategoryHandler = async (ctx: CheerioCrawlingContext<UserData[typeof Label.FORUM_CATEGORY]>) => {
+    const crawlingStatistics = await CrawlingStatistics.getInstance();
     const { $, request, log, addRequests } = ctx;
-    const $topics = $(selectors.topics);
+    const { limit } = request.userData;
+
     const NOW = new Date().toISOString();
+
+    const $topics = $(selectors.topics);
+
+    if (limit != null && crawlingStatistics.topicsEnqueued >= limit) {
+        log.info(`[${Label.FORUM_CATEGORY}] Limit of ${limit} topics reached, stopping pagination.`);
+        return;
+    }
 
     const topicRequests = $topics
         .toArray()
@@ -66,6 +76,18 @@ export const forumCategoryHandler = async (ctx: CheerioCrawlingContext<UserData[
             const userData: UserData[typeof Label.TOPIC_DETAIL] = {
                 topic,
             };
+
+            log.info(
+                `[${Label.FORUM_CATEGORY}] Enqueuing topic ${title} (${crawlingStatistics.topicsEnqueued + 1}/${limit ?? 'unlimited'}).`,
+            );
+
+            crawlingStatistics.topicEnqueued();
+
+            // check if we reached the limit and stop if so
+            if (limit != null && crawlingStatistics.topicsEnqueued > limit) {
+                log.info(`[${Label.FORUM_CATEGORY}] Limit of ${limit} topics reached, not enqueuing topic "${title}"`);
+                return null;
+            }
 
             return new Request({
                 url,

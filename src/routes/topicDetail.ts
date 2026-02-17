@@ -57,6 +57,9 @@ export const topicDetailHandler = async (ctx: CheerioCrawlingContext<UserData[ty
 
     await Actor.pushData(posts);
 
+    crawlingStatistics.topicScraped();
+    crawlingStatistics.postsScraped(posts.length);
+
     if (!hasMultiplePages || isLastPage) {
         log.info(
             `[${Label.TOPIC_DETAIL}] No pagination or last page reached for topic ${url}, pushing ${posts.length} posts data.`,
