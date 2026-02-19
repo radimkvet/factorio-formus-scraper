@@ -1,0 +1,23 @@
+{
+    "title": "Factorio Scraper Input Schema",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "category": {
+            "title": "Category",
+            "type": "string",
+            "description": "The category to scrape, case insensitive",
+            "editor": "textfield",
+            "prefill": "news"
+        },
+        "limit": {
+            "title": "Limit",
+            "type": "number",
+            "description": "The maximum number of topics to scrape, there are 25 topics per page",
+            "editor": "number",
+            "prefill": 100,
+            "minimum": 1
+        }
+    },
+    "required": ["category"]
+}

@@ -1,0 +1,131 @@
+{
+    "actorSpecification": 1,
+    "title": "Factorio topics dataset schema",
+    "description": "Schema for Factorio forum topics dataset",
+    "fields": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+            "publishedAt": {
+                "type": "string",
+                "format": "date-time"
+            },
+            "author": {
+                "type": "string"
+            },
+            "text": {
+                "type": "string"
+            },
+            "topic": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "category": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "url": {
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    "author": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "lastPostAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "views": {
+                        "type": "number"
+                    },
+                    "isAnnouncement": {
+                        "type": "boolean"
+                    },
+                    "totalPosts": {
+                        "type": "integer"
+                    }
+                }
+            }
+        }
+    },
+    "views": {
+        "overview": {
+            "title": "Overview",
+            "transformation": {
+                "fields": [
+                    "topic.category",
+                    "topic.title",
+                    "topic.url",
+                    "topic.author",
+                    "topic.createdAt",
+                    "topic.lastPostAt",
+                    "topic.views",
+                    "topic.isAnnouncement",
+                    "topic.totalPosts",
+                    "author",
+                    "publishedAt",
+                    "text"
+                ]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "topic.category": {
+                        "label": "Category",
+                        "format": "text"
+                    },
+                    "topic.title": {
+                        "label": "Topic Title",
+                        "format": "text"
+                    },
+                    "topic.url": {
+                        "label": "Topic URL",
+                        "format": "link"
+                    },
+                    "topic.author": {
+                        "label": "Topic Author",
+                        "format": "text"
+                    },
+                    "topic.createdAt": {
+                        "label": "Topic Created At",
+                        "format": "date"
+                    },
+                    "topic.lastPostAt": {
+                        "label": "Last Post At",
+                        "format": "date"
+                    },
+                    "topic.views": {
+                        "label": "Views",
+                        "format": "number"
+                    },
+                    "topic.isAnnouncement": {
+                        "label": "Announcement",
+                        "format": "boolean"
+                    },
+                    "topic.totalPosts": {
+                        "label": "Total Posts",
+                        "format": "number"
+                    },
+                    "author": {
+                        "label": "Post Author",
+                        "format": "text"
+                    },
+                    "publishedAt": {
+                        "label": "Post Published At",
+                        "format": "date"
+                    },
+                    "text": {
+                        "label": "Post Text",
+                        "format": "text"
+                    }
+                }
+            }
+        }
+    }
+}

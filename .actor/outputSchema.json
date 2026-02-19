@@ -1,0 +1,12 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "description": "Output schema for factorio scraper",
+    "title": "Output schema for factorio scraper",
+    "properties": {
+        "dataset": {
+            "type": "string",
+            "title": "Dataset",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        }
+    }
+}
